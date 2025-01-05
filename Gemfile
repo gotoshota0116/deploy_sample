@@ -64,6 +64,8 @@ gem "bootsnap", require: false
 
 gem 'mini_magick'
 
+gem 'meta-tags', require: 'meta_tags'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # Rails アプリケーションのデバッグについては以下を参照: https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
