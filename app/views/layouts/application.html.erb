@@ -10,6 +10,8 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 
     <!-- meta_tag -->
+    <!--アプリ全体のページに共通してメタタグを出力することができる -->
+    <!--これによりshowアクションで設定した、メタタグデータを取得できる -->
     <%= display_meta_tags %>
   </head>
 

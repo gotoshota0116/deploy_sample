@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
    get 'images/ogp.png', to: 'images#ogp', as: 'images_ogp'
    # asをつかうことで、images_ogp_pathのヘルパーを使うことができる。resourceなどは自動でヘルパーを生成してくれる。
+   # OGPのルーティング
 
   # Defines the root path route ("/")
   # root "posts#index"

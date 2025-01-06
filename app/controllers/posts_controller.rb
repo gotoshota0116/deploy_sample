@@ -74,21 +74,28 @@ class PostsController < ApplicationController
     end
 
     def prepare_meta_tags(post)
-      ## このimage_urlにMiniMagickで設定したOGPの生成した合成画像を代入する
+      ## OGP画像を取得するためのURLを構築（MiniMagickで生成される画像のエンドポイント）
+      ## このURLにアクセスすると、/images/ogp.png にルーティングされ、OGP画像が動的に生成される
           image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(post.title)}"
+
+          # setset_meta_tags は、meta-tags gem によって提供されるメソッドで、メタタグを簡潔に設定できます。
+          # og:は Facebook、LinkedIn、Pinterest、Discord などのOGP対応SNSで使用される設定。
           set_meta_tags og: {
-                          site_name: '詐欺師の手帳',
+                          site_name: 'サイトの名前',
                           title: post.title,
-                          description: 'ユーザーによる詐欺被害の投稿です',
+                          description: '投稿の説明',
                           type: 'website',
                           url: request.original_url,
                           image: image_url,
                           locale: 'ja-JP'
                         },
+                        # twitter:は Twitter のシェアプレビュー用設定
                         twitter: {
                           card: 'summary_large_image',
                           site: '@https://x.com/gshota_0116',
-                          image: image_url
+                          image: image_url,
+                          title: '#表示する'
                         }
+                        #　上記image: image_urlを表示するために、/images/ogp.pngにアクセスがいき、ogpアクションが走る！
     end
 end
