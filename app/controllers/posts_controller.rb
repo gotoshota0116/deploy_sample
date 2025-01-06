@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
+  ## 設定したprepare_meta_tagsをprivateにあってもpostコントローラー以外にも使えるようにする
+  helper_method :prepare_meta_tags
+
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -8,6 +11,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+  ## メタタグを設定する。
+  prepare_meta_tags(@post)
   end
 
   # GET /posts/new
@@ -66,5 +71,31 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :content)
+    end
+
+    def prepare_meta_tags(post)
+      ## OGP画像を取得するためのURLを構築（MiniMagickで生成される画像のエンドポイント）
+      ## このURLにアクセスすると、/images/ogp.png にルーティングされ、OGP画像が動的に生成される
+          image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(post.title)}"
+
+          # setset_meta_tags は、meta-tags gem によって提供されるメソッドで、メタタグを簡潔に設定できます。
+          # og:は Facebook、LinkedIn、Pinterest、Discord などのOGP対応SNSで使用される設定。
+          set_meta_tags og: {
+                          site_name: 'サイトの名前',
+                          title: post.title,
+                          description: '投稿の説明',
+                          type: 'website',
+                          url: request.original_url,
+                          image: image_url,
+                          locale: 'ja-JP'
+                        },
+                        # twitter:は Twitter のシェアプレビュー用設定
+                        twitter: {
+                          card: 'summary_large_image',
+                          site: '@https://x.com/gshota_0116',
+                          image: image_url,
+                          title: '#表示する'
+                        }
+                        #　上記image: image_urlを表示するために、/images/ogp.pngにアクセスがいき、ogpアクションが走る！
     end
 end
