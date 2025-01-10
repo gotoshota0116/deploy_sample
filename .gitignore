@@ -43,3 +43,7 @@
 .DS_Store
 /vendor/bundle
 # ここまで追記
+
+/public/uploads
+
+.env

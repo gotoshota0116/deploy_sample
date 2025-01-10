@@ -70,7 +70,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :image)
     end
 
     def prepare_meta_tags(post)
@@ -80,7 +80,10 @@ class PostsController < ApplicationController
 
           # setset_meta_tags は、meta-tags gem によって提供されるメソッドで、メタタグを簡潔に設定できます。
           # og:は Facebook、LinkedIn、Pinterest、Discord などのOGP対応SNSで使用される設定。
-          set_meta_tags og: {
+          set_meta_tags(
+            title: 'まーちゃん',
+            discription: 'まーちゃん大学ごめんね学部',
+                          og: {
                           site_name: 'サイトの名前',
                           title: post.title,
                           description: '投稿の説明',
@@ -92,10 +95,10 @@ class PostsController < ApplicationController
                         # twitter:は Twitter のシェアプレビュー用設定
                         twitter: {
                           card: 'summary_large_image',
-                          site: '@https://x.com/gshota_0116',
+                          site: '@gshota_0116',
                           image: image_url,
-                          title: '#表示する'
                         }
+          )
                         #　上記image: image_urlを表示するために、/images/ogp.pngにアクセスがいき、ogpアクションが走る！
     end
 end
