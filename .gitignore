@@ -45,3 +45,5 @@
 # ここまで追記
 
 /public/uploads
+
+.env
