@@ -9,4 +9,9 @@
     <%= post.content %>
   </p>
 
+    <p>
+    <strong>Imgae:</strong>
+    <%= image_tag  post.image.url if post.image? %>
+  </p>
+
 </div>
