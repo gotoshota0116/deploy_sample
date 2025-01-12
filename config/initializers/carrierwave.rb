@@ -13,4 +13,6 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1',   # アジアパシフィック(東京)を選択した場合
       path_style: true
     }
+	config.fog_attributes = { 'x-amz-acl' => nil } # 明示的にACLを無効化
+	config.fog_public = false # ファイルを非公開にする
 end
