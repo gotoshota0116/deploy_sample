@@ -2,7 +2,10 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[7.1]
   def change
-    create_table :users do |t|
+    # PostgreSQL の `uuid` を使用するための拡張機能を有効化
+    enable_extension 'pgcrypto'
+    # `id: :uuid` を指定して `uuid` をプライマリーキーに設定
+    create_table :users, id: :uuid  do |t|
       ## Database authenticatable（認証情報の保存）
       # ユーザーのメールアドレス（必須、デフォルトは空文字）
       t.string :email, null: false, default: ""
