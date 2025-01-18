@@ -13,14 +13,7 @@
 ActiveRecord::Schema[7.1].define(version: 2025_01_17_090822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
-  # PostgreSQL の `uuid` を使用するための拡張機能
   enable_extension "plpgsql"
-
-  # **[重要] インデックスについて**
-# - Rails は `id` カラムをデフォルトで **主キー（PRIMARY KEY）** にする
-# - 主キーには **自動でユニーク制約とインデックス** が付く
-# - `id: :uuid` を指定した場合でも、UUID に対して **自動で PRIMARY KEY + インデックス** が作成される
-# users.id が UUID の場合、関連付けされる posts.user_id などの外部キーも UUID にする必要がある。
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
