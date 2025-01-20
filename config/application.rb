@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Rails.load #これを追記して.envを読み込むようにする
+#Dotenv::Rails.load #クレデンシャル使ったからコメントアウト！
 
 module Myapp
   class Application < Rails::Application
