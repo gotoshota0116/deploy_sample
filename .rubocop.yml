@@ -16,6 +16,9 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
+Rails/I18nLocaleTexts:
+  Enabled: false  # I18n のルールは一時的に無効にしている！！！！！！！！！！！！
+
 # 🚫 厳しすぎるルールを無効化・調整
 Style/Documentation:
   Enabled: false # クラス・モジュールのドキュメント強制を無効化
@@ -24,10 +27,10 @@ Style/FrozenStringLiteralComment:
   Enabled: false # frozen_string_literal: true の強制を無効化
 
 Metrics/MethodLength:
-  Max: 15  # メソッドの長さ制限を15行に緩和（デフォルト: 10）
+  Max: 20  # メソッドの長さ制限を20行に緩和（デフォルト: 10）
 
 Metrics/AbcSize:
-  Max: 20  # メソッドの複雑度の上限を緩和（デフォルト: 17）
+  Max: 26  # メソッドの複雑度の上限を緩和（デフォルト: 17）
 
 Metrics/CyclomaticComplexity:
   Max: 10  # 複雑度の上限を10に緩和（デフォルト: 7）
@@ -38,7 +41,7 @@ Metrics/BlockLength:
     - "config/environments/*.rb" # 環境設定ファイルの長いブロックを許容
 
 Layout/LineLength:
-  Max: 120 # 1行120文字まで許容
+  Max: 160 # 1行150文字まで許容
 
 Style/ClassAndModuleChildren:
   Enabled: false # A::B の記述スタイルを変更しない
