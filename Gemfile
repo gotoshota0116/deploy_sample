@@ -83,7 +83,7 @@ group :development, :test do
   # Rails アプリケーションのデバッグについては以下を参照: https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
 
-  gem 'rubocop', require: false # 追加
+  gem 'rubocop', '~> 1.70', require: false # 追加
   gem 'rubocop-performance', require: false # 追加
   gem 'rubocop-rails', require: false # 追加
   gem 'rubocop-rspec' # 追加

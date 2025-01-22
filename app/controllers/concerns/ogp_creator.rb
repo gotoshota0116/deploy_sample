@@ -37,7 +37,7 @@ class OgpCreator
   # 行数（ROW_LIMIT）を超えないように整形するメソッド
   # 返り値: 整形されたテキスト（改行を含む文字列）
   def self.prepare_text(text)
-    text.to_s.scan(/.{1,#{INDENTION_COUNT}}/)[0...ROW_LIMIT].join("\n")
+    text.to_s.scan(/.{1,#{INDENTION_COUNT}}/o)[0...ROW_LIMIT].join("\n")
     # to_sはnil対策：nilが渡された場合でもエラーが起きないように文字列化
   end
 end
