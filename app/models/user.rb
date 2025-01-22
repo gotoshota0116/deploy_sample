@@ -10,16 +10,15 @@ class User < ApplicationRecord
   # `uid` はプロバイダー（Google, Facebook など）ごとに一意である必要がある
   # 通常のメール & パスワード登録時は `uid: nil` になるため、`allow_nil: true` でバリデーションをスキップ
 
-
   # 最初にemailとパスワードで登録したのちに、googleログインを使用とした場合、google認証情報を既存のユーザーに紐づける処理する
   # deviseのデフォルトバリデーションで、emailのユニークが設定されているため、同じメールアドレスのユーザー作成はできない
   def self.from_omniauth(auth)
-     # まず `provider` & `uid` でユーザーを検索
+    # まず `provider` & `uid` でユーザーを検索
     user = where(provider: auth.provider, uid: auth.uid).first
-  
+
     # すでに Google 認証済みのユーザーがいるなら、それを返す
     return user if user.present?
-  
+
     # 既存の `email` を持つユーザーを検索（メール & パスワード登録済みユーザー）
     user = find_by(email: auth.info.email)
     if user
@@ -33,8 +32,8 @@ class User < ApplicationRecord
         email: auth.info.email,
         name: auth.info.name,
         password: Devise.friendly_token[0, 20]
-          #user.avatar = auth.info.image
-      #user.skip_confirmation!　メール認証をじっそうしたときにこの記載が必要
+        # user.avatar = auth.info.image
+        # user.skip_confirmation!　メール認証をじっそうしたときにこの記載が必要
       )
     end
     user
