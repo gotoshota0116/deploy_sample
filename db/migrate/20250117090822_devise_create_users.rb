@@ -8,12 +8,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
     create_table :users, id: :uuid  do |t|
       ## Database authenticatable（認証情報の保存）
       # ユーザーのメールアドレス（必須、デフォルトは空文字）
-      t.string :email, null: false, default: ""
+      t.string :email, null: false, default: ''
       # 暗号化されたパスワード（必須、デフォルトは空文字）
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false, default: ''
 
       # deviseでユーザーログインできるようにカラムを追加
-      t.string :name,          null: false
+      t.string :name, null: false
 
       ## Recoverable（パスワードリセット機能）
       # パスワードリセット用のトークン（ワンタイムキー）
