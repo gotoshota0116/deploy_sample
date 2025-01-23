@@ -94,7 +94,6 @@ group :development do
   # 例外ページでコンソールを使用する [https://github.com/rails/web-console]
   gem 'web-console'
 
-  gem 'letter_opener'
   gem 'letter_opener_web'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
