@@ -64,6 +64,9 @@ Rails.application.configure do
 
   # 以下devise実装ときに記載
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
