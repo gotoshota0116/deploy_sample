@@ -71,6 +71,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "myapp_production"
 
+  config.action_mailer.default_url_options = { host: "https://deploy-sample-dqrx.onrender.com", protocol: 'https' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: 'smtp.gmail.com',
+  port: 587,
+  domain: "deploy-sample-dqrx.onrender.com",
+  user_name: Rails.application.credentials.dig(:gmail, :username), # クレデンシャルから取得
+  password: Rails.application.credentials.dig(:gmail, :app_password), # アプリパスワード
+  authentication: 'plain',
+  enable_starttls_auto: true
+}
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
