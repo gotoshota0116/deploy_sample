@@ -18,6 +18,12 @@ module Myapp
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # タイムゾーンを日本時間（JST）に設定
+    config.time_zone = 'Tokyo'
+
+    # データベースには UTC で保存し、アプリ側で JST に変換
+    config.active_record.default_timezone = :utc
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
