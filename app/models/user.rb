@@ -34,8 +34,8 @@ class User < ApplicationRecord
         name: auth.info.name,
         password: Devise.friendly_token[0, 20]
         # user.avatar = auth.info.image
-         user.skip_confirmation! #メール認証をじっそうしたときにこの記載が必要
       )
+      user.skip_confirmation! #メール認証をじっそうしたときにこの記載が必要
     end
     user
   end
